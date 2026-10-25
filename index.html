@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Stone Games</title>
+<meta name="description" content="Little Stone Games: bright, quick puzzle games for phones and the web.">
+<link rel="icon" href="img/toy-box-exit.png">
+<style>
+  :root { --bg:#f6f3ff; --card:#ffffff; --ink:#231c3d; --muted:#6b6485; --accent:#6a4cff; --line:#e6e0fb; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#16131f; --card:#211c30; --ink:#f1edff; --muted:#a59fc0; --accent:#a996ff; --line:#2f2944; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width:880px; margin:0 auto; padding:48px 16px 32px; }
+  header h1 { font-size:2.2rem; margin:0 0 6px; letter-spacing:-.5px; }
+  header p { margin:0; color:var(--muted); }
+  h2 { margin:40px 0 16px; font-size:1.25rem; }
+  .games { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+  .game { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px; display:flex; gap:14px; align-items:center; }
+  .game img { width:72px; height:72px; border-radius:16px; flex:none; }
+  .game h3 { margin:0 0 4px; font-size:1.05rem; }
+  .game p { margin:0 0 6px; color:var(--muted); font-size:.9rem; }
+  .game a { color:var(--accent); font-weight:600; text-decoration:none; font-size:.9rem; }
+  .soon { color:var(--muted); font-size:.85rem; }
+  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; display:flex; flex-wrap:wrap; gap:8px 20px; }
+  footer a { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Little Stone Games</h1>
+    <p>Small studio from Ukraine making bright, quick puzzle games for phones and the web.</p>
+  </header>
+
+  <h2>Our games</h2>
+  <div class="games">
+    <div class="game">
+      <img src="img/goods-sort.png" alt="Goods Sort icon">
+      <div>
+        <h3>Goods Sort</h3>
+        <p>Match three same goods on the shelves.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.kamin.goodssort">Google Play</a>
+      </div>
+    </div>
+    <div class="game">
+      <img src="img/pixel-painters.png" alt="Pixel Painters icon">
+      <div>
+        <h3>Pixel Painters</h3>
+        <p>Send painters along the belt and fill pixel art.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.kamin.pixelpainters">Google Play</a>
+      </div>
+    </div>
+    <div class="game">
+      <img src="img/toy-box-exit.png" alt="Toy Box Exit icon">
+      <div>
+        <h3>Toy Box Exit</h3>
+        <p>Slide toy blocks out through gates of their color.</p>
+        <span class="soon">Coming soon</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Little Stone Games (Andrii Kaminskyi)</span>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="mailto:littlestonegames.studio@gmail.com">littlestonegames.studio@gmail.com</a>
+  </footer>
+</div>
+</body>
+</html>
