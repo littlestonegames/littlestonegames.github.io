@@ -1,0 +1,24 @@
+Flow:
+Dlt --(Pdu_FsiCcplex_Dlt_Event_3b3d8eef_Tx)--> PduR --> CddDltTxConfAdapter_Transmit()
+    --> PduR_CddDltTxConfAdapterTransmit(Pdu_FsiCcplex_Dlt_Fwd_Tx) --> PduR --> CddCcplexCom_Transmit()
+    <-- E_OK / E_NOT_OK
+    if E_OK --> PduR_CddDltTxConfAdapterTxConfirmation(...) --> Dlt_TxConfirmation
+
+## 1. DaVinci: EcuC
+Create a new PDU, e.g. `Pdu_FsiCcplex_Dlt_Fwd_Tx`, length 1400 (same as the current Dlt PDU).
+
+## 2. DaVinci: CDD `CddDltTxConfAdapter`
+Keep the existing `CddPduRLowerLayerTxPdu` -> `Pdu_FsiCcplex_Dit_CddDltTxConfAdapter_3b3d8eef_Tx`.
+Add `CddPduRUpperLayerContribution` -> `CddPduRUpperLayerTxPdu` referencing `Pdu_FsiCcplex_Dlt_Fwd_Tx`.
+
+## 3. DaVinci: PduR
+* BswModules -> CddDltTxConfAdapter: `PduRUpperModule = true`, `PduRLowerModule` stays `true`.
+  This generates `PduR_CddDltTxConfAdapterTransmit`.
+  (Usually derived automatically from the CDD upper-layer contribution in step 2; if it is still
+  `false` after step 2, set it manually.)
+* Dlt routing (`Pdu_FsiCcplex_Dlt_Event_3b3d8eef_Tx`): keep only one destination,
+  `Pdu_FsiCcplex_Dit_CddDltTxConfAdapter_3b3d8eef_Tx`. Remove destination `Pdu_FsiCcplex_Dlt_Event_3eeb2bd0_Tx`.
+* New routing path: src `Pdu_FsiCcplex_Dlt_Fwd_Tx` (from CddDltTxConfAdapter)
+  -> dest `Pdu_FsiCcplex_Dlt_Event_3eeb2bd0_Tx` (CddCcplexCom).
+  This is the same lower-layer PDU, so CddCcplexCom still finds its channel 71 without code changes.
+  Give the SrcPdu a readable name right away, e.g. `PduRSrcPdu_DltFwd` (avoid hash-based names).
